@@ -66,13 +66,21 @@ body {
 
         .list-of-names {
           font-size: 2rem;
-          background-color: rgba(0,0,0, .5);
           color: white;
-          .name:hover {
-            opacity: .4;
+          .name {
+            background-color: rgba(0,0,0, .6);
+            border-bottom: 1px solid rgba(0,0,0, .7);
+            &:hover {
+              background-color: rgba(255,255,255, .6);
+              opacity: .9;
+              color: rgba(0,0,0, .6);
+              font-weight: bold;
+              cursor: pointer;
+              transform: scaleY(1.15);
+            }
           }
         }
-        
+
         .search-bar {
           background-color: $header-color;
           width: 100%;
