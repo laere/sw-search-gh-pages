@@ -363,8 +363,9 @@ html {
   box-sizing: border-box;
   font-size: 62.5%; }
 
-*, *:after, *:before {
-  box-sizing: border-box; }
+*, *:after, *:before, *::-webkit-input-placeholder {
+  box-sizing: border-box;
+  color: white; }
 
 body {
   background-image: url("http://i0.wp.com/www.gamengadgets.com/wp-content/uploads/2014/12/star-wars-wallpaper-33.gif");
@@ -374,9 +375,12 @@ body {
   line-height: 1.5;
   font-family: 'Star Jedi'; }
 
+input[placeholder] {
+  color: white !important; }
+
 @keyframes expand {
   50% {
-    width: 100px; }
+    width: 110px; }
   100% {
     width: 150px; } }
 #container {
@@ -415,11 +419,10 @@ body {
         border: none;
         margin: 24px 0;
         margin-left: 64px;
-        width: 50px;
+        width: 70px;
         border-bottom: 1px solid white;
         height: 30px;
-        font-size: 1.85rem;
-        color: white; }
+        font-size: 1.5rem; }
         #container .ui .search-bar .search:focus {
           animation: expand .25s ease-out;
           animation-fill-mode: forwards;
@@ -434,8 +437,9 @@ body {
     #container .ui .info {
       font-size: 2rem;
       color: white;
-      padding: 32px;
-      margin-left: 32px; }
+      margin-left: 64px;
+      width: 70%;
+      height: 300px; }
       #container .ui .info .info-header {
         font-weight: bold;
         font-size: 4rem; }

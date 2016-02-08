@@ -1,5 +1,4 @@
 var React = require('react');
-var SWAPI = require('swapi-node');
 var Search = require('./Search.jsx')
 var Img = require('./Img.jsx');
 var Info = require('./Info.jsx');
@@ -8,7 +7,7 @@ var UI = React.createClass({
 
   getInitialState: function() {
       return {
-        people: []
+        people: [],
       }
   },
 
@@ -39,6 +38,7 @@ var UI = React.createClass({
             <Search characters={this.state.people} />
           </header>
           <Img />
+          <Info characters={this.state.people}/>
         </div>
     );
   }
