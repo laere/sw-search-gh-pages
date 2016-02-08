@@ -4,13 +4,14 @@ var Search = React.createClass({
 
     getInitialState: function() {
       return {
-        value: ''
+        value: '',
+        isExpanded: false
       }
     },
 
     handleOnChange: function(e) {
       this.setState({
-        value: e.target.value
+        value: e.target.value,
       });
     },
 
@@ -23,6 +24,7 @@ var Search = React.createClass({
     },
 
     renderLoading: function() {
+
       return (
         <div>
           ...loading data...
@@ -30,30 +32,41 @@ var Search = React.createClass({
       )
     },
 
-    hideList: function() {
-        $('list-of-names').hide();
+    expandOnFocus: function() {
+      this.setState({isExpanded: true});
     },
 
-    renderSearch: function() {
+    expandOnBlur: function() {
+      this.setState({isExpanded: false});
+    },
+
+    renderSuggestionList: function() {
         //Desired name equals input value
         var desiredName = this.state.value;
         //Filter through results array for matching name, return name if it exists.
         var matchingResults = this.props.characters.results.filter(function(result) {
-            return result.name.toLowerCase().indexOf(desiredName) !== -1;
+          console.log(desiredName);
+          return result.name.toLowerCase().indexOf(desiredName) !== -1;
         });
 
+        var isExpanded = this.state.isExpanded;
+        return matchingResults.map(function(matchingResult, i) {
+            return (
+                <div value={isExpanded} className="list-of-names" key={i}>
+                    <div className="name">{matchingResult.name}</div>
+                </div>
+            )
+        });
+    },
+
+    renderSearch: function() {
+
         return (
-            <div onFocus={this.hideList}>
+            <div>
                 <img className="search-icon" src="https://cdn3.iconfinder.com/data/icons/ecommerce-5/100/search-01-128.png" width="16px" height="16px" />
-                <input type="text" className="search" value={this.state.value} onChange={this.handleOnChange}/>
+                <input type="text" className="search" value={this.state.value} onChange={this.handleOnChange} onFocus={this.expandOnFocus} onBlur={this.expandOnBlur} />
                 {/*Return the name of each object*/}
-                {matchingResults.map(function(matchingResult, i) {
-                    return (
-                        <div className="list-of-names" key={i} >
-                            <div className="name">{matchingResult.name}</div>
-                        </div>
-                    )
-                })}
+                {this.state.isExpanded ? this.renderSuggestionList() : null}
             </div>
         );
     }

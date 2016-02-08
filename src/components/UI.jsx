@@ -36,7 +36,7 @@ var UI = React.createClass({
           <header className="search-bar">
             {/*<h1>{filtered}</h1>*/}
             {/*SEARCH BAR TO LOOK UP API INFO*/}
-            <Search  characters={this.state.people} />
+            <Search characters={this.state.people} />
           </header>
           <Img />
         </div>
